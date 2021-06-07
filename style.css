@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* img: https://www.pexels.com/photo/black-sand-dunes-2387793/ */
+
+body {
+    color: #eee;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#heroImage {
+    height: 100vh;
+    background: url(img.jpg) center;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+h2 {
+    font-size: 4rem;
+    text-shadow: 5px 5px 5px #111;
+}
+
+.container {
+    font-size: 2rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.unit {
+    text-align: center;
+    text-shadow: 0 0 5px #eee;
+}
+
+@media (max-width: 650px) {
+    h2 {
+        font-size: 2rem;  
+    }
+    .container {
+        font-size: 1.25rem;
+    }
+}
