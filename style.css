@@ -22,18 +22,51 @@ body {
     align-items: center;
 }
 
-h2 {
-    font-size: 4rem;
+h1 {
+    font-size: 2.5rem;
     text-shadow: 5px 5px 5px #111;
 }
 
-.container {
-    font-size: 2rem;
+#setup input {
+    padding: .5rem;
+    font-size: 1.25rem;
+    background-color: #ddd;
+    color: #000;
+    border: 2px solid #000;
+}
 
-    display: flex;
+#setup button {
+    margin-left: 1.25rem;
+    padding: .5rem;
+    font-size: 1.25rem;
+    border-radius: 12.5%;
+    background-color: #ddd;
+    color: #222;
+    border: 2px solid #222;
+    transition: all .5s linear;
+}
+
+#setup button:hover {
+    cursor: pointer;
+    background-color: #222;
+    color: #ddd;
+    border: 2px solid #ddd;
+}
+
+#errormsg {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: red;
+    text-shadow: 0 0 5px #111;
+}
+
+.container {
+    font-size: 1.25rem;
+
+    display: none;
     flex-direction: row;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.25rem;
     flex-wrap: wrap;
 }
 
@@ -43,9 +76,10 @@ h2 {
 }
 
 @media (max-width: 650px) {
-    h2 {
-        font-size: 2rem;  
+    h1 {
+        font-size: 2rem;
     }
+
     .container {
         font-size: 1.25rem;
     }

@@ -1,3 +1,4 @@
+// CONSTANTS & VARIABLES
 const decadesElement = document.getElementById("decades");
 const yearsElement = document.getElementById("years");
 const daysElement = document.getElementById("days");
@@ -6,11 +7,41 @@ const minutesElement = document.getElementById("minutes");
 const secondsElement = document.getElementById("seconds");
 const millisecondsElement = document.getElementById("milliseconds");
 
-const endDateString = "16 May 2092";
+var datetime;
+var error = document.getElementById('errormsg');
+var count = document.getElementById('count');
 
+// IT TRIGGERS WHEN START BUTTON IS CLICKED
+function start() {
+
+    datetime = document.getElementById('datetime').value;
+    const end = new Date(datetime);
+
+    now = new Date();
+
+    const difference = (end - now);
+    // console.log(difference);
+
+    // VALIDATE SELECTED DATE BY USER
+    if (datetime == '' || datetime == null) {
+        error.innerHTML = "set up a date!";
+    } else if (difference <= 0) {
+        error.innerHTML = "the end date must be later than now!";
+    } else {
+        error.style.display = "none";
+        count.style.display = 'flex';
+        // console.log(datetime);
+        setInterval(countdown, 1);
+    }
+}
+
+// IT TRIGGERS 1000 TIMES PER SECOND FROM START BUTTON CLICKED
 function countdown() {
-    const endDate = new Date(endDateString);
+    const endDate = new Date(datetime);
+    // console.log(endDate);
+
     const currentDate = new Date();
+    // console.log(currentDate);
 
     var totalSeconds = (endDate - currentDate);
 
@@ -26,20 +57,14 @@ function countdown() {
     const decades = Math.floor(totalSeconds / 3600 / 24 / 365 / 10);
 
     millisecondsElement.innerHTML = milliseconds;
-
     secondsElement.innerHTML = formatTime(seconds);
     minutesElement.innerHTML = formatTime(mins);
     hoursElement.innerHTML = formatTime(hours);
     daysElement.innerHTML = days;
-    decadesElement.innerHTML = decades;
     yearsElement.innerHTML = years;
+    decadesElement.innerHTML = decades;
 }
 
 function formatTime(time) {
     return time < 10 ? `0${time}` : time;
 }
-
-// initial call
-countdown();
-
-setInterval(countdown, 1);

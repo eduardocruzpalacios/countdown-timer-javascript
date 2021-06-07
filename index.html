@@ -11,16 +11,23 @@
     <meta name="copyright" content="Eduardo de la Cruz Palacios" />
     <title>Countdown Timer</title>
     <link rel="stylesheet" href="style.css">
-    <script src="app.js" defer></script>
+    <script src="../app.js" defer></script>
 </head>
 
 <body>
 
     <section id="heroImage">
 
-        <h2>Upcoming!</h2>
+        <h1>Countdown Timer</h1>
 
-        <div class="container">
+        <div id="setup">
+            <input type="datetime-local" name="date" id="datetime">
+            <button onclick="start()" id="start">Start</button>
+        </div>
+
+        <p id="errormsg"></p>
+
+        <div class="container" id="count">
 
             <div class="unit">
                 <p id="decades" class="countDownNumber"></p>
