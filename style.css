@@ -27,20 +27,31 @@ h1 {
     text-shadow: 5px 5px 5px #111;
 }
 
+#setup {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+#setup label {
+    text-align: right;
+}
+
 #setup input {
     padding: .5rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
 #setup button {
-    margin-left: 1.25rem;
     padding: .5rem;
-    font-size: 1.25rem;
-    border-radius: 12.5%;
+    font-size: 1rem;
     background-color: #ddd;
     color: #222;
     border: 2px solid #222;
     transition: all .5s linear;
+    grid-column: 1 / span 2;
 }
 
 #setup button:hover {

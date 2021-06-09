@@ -1,4 +1,6 @@
 // CONSTANTS & VARIABLES
+const cajaInput = document.getElementById('setup');
+
 const decadesElement = document.getElementById("decades");
 const yearsElement = document.getElementById("years");
 const daysElement = document.getElementById("days");
@@ -8,22 +10,86 @@ const secondsElement = document.getElementById("seconds");
 const millisecondsElement = document.getElementById("milliseconds");
 
 var datetime;
-var error = document.getElementById('errormsg');
-var count = document.getElementById('count');
+const error = document.getElementById('errormsg');
+const count = document.getElementById('count');
+
+// CHECK INPUT IS SUPPORTED BY USER'S BROWSER AND CREATE CORRECT INPUT
+function checkInput(type) {
+    const input = document.createElement('input');
+    input.setAttribute('type', type);
+    return input.type === type;
+}
+
+function setButton() {
+    const button = document.createElement('button');
+    button.setAttribute('onclick', 'start()');
+    button.setAttribute('id', 'start');
+    button.innerHTML = 'Start';
+    cajaInput.appendChild(button);
+}
+
+function setLabel(text) {
+    const labelChrome = document.createElement('label');
+    labelChrome.innerHTML = text;
+    cajaInput.appendChild(labelChrome);
+}
+
+if (checkInput('datetime-local')) {
+    // label
+    setLabel('Pick the date and time you wish:');
+    // input datetime-local
+    const dateTimeLocal = document.createElement('input');
+    dateTimeLocal.setAttribute('type', 'datetime-local');
+    dateTimeLocal.setAttribute('id', 'datetime');
+    cajaInput.appendChild(dateTimeLocal);
+    // button
+    setButton();
+} else if (checkInput('date') && checkInput('time')) {
+    // label
+    setLabel('Date:');
+    // input date
+    const date = document.createElement('input');
+    date.setAttribute('type', 'date');
+    date.setAttribute('id', 'date');
+    cajaInput.appendChild(date);
+    //
+    setLabel('Time:');
+    // input time
+    const time = document.createElement('input');
+    time.setAttribute('type', 'time');
+    time.setAttribute('id', 'time');
+    time.setAttribute('value', '00:00');
+    cajaInput.appendChild(time);
+    // button
+    setButton();
+} else {
+    alert('Sorry, your browser does not support this app');
+}
 
 // IT TRIGGERS WHEN START BUTTON IS CLICKED
 function start() {
 
-    datetime = document.getElementById('datetime').value;
+    if (checkInput('datetime-local')) {
+        datetime = document.getElementById('datetime').value;
+    } else if (checkInput('date') && checkInput('time')) {
+        var date = document.getElementById('date').value;
+        // console.log(date);
+
+        var time = document.getElementById('time').value;
+        // console.log(time);
+
+        datetime = date + 'T' + time;
+    }
+
+    // console.log(datetime);
+
     const end = new Date(datetime);
-
     now = new Date();
-
     const difference = (end - now);
     // console.log(difference);
 
-    // VALIDATE SELECTED DATE BY USER
-    if (datetime == '' || datetime == null) {
+    // VALIDATE SELECTED DATE BY USER (16 is the datetime format length)
+    if (datetime == '' || datetime == null || datetime.length < 16) {
         error.innerHTML = "set up a date!";
     } else if (difference <= 0) {
         error.innerHTML = "the end date must be later than now!";
