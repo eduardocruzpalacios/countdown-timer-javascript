@@ -29,9 +29,9 @@ function setButton() {
 }
 
 function setLabel(text) {
-    const labelChrome = document.createElement('label');
-    labelChrome.innerHTML = text;
-    cajaInput.appendChild(labelChrome);
+    const label = document.createElement('label');
+    label.innerHTML = text;
+    cajaInput.appendChild(label);
 }
 
 if (checkInput('datetime-local')) {
