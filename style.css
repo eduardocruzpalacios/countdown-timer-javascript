@@ -92,8 +92,17 @@ h1 {
         font-size: 1.25rem;
     }
 
+    #setup {
+        display: grid;
+        grid-template-columns: auto;
+        gap: 1rem;
+    }
+
+    #setup label {
+        text-align: center;
+    }
+
     #setup button {
-        width: 50%;
-        margin: auto;
+        grid-column: 1 / span 1;
     }
 }
