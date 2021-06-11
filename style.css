@@ -27,7 +27,8 @@ h1 {
     text-shadow: 5px 5px 5px #111;
 }
 
-#setup {
+#setup,
+#refreshconfig {
     display: grid;
     grid-template-columns: auto auto;
     justify-content: center;
@@ -35,13 +36,11 @@ h1 {
     gap: 2rem;
 }
 
-#setup label {
-    text-align: right;
-}
-
-#setup input {
+#setup input,
+#refreshconfig input {
     padding: .5rem;
     font-size: 1rem;
+    outline: none;
 }
 
 #setup button {

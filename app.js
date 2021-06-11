@@ -13,6 +13,10 @@ var datetime;
 const error = document.getElementById('errormsg');
 const count = document.getElementById('count');
 
+var interval;
+var refreshElement;
+var refreshTime = 1;
+
 // CHECK INPUT IS SUPPORTED BY USER'S BROWSER AND CREATE CORRECT INPUT
 function checkInput(type) {
     const input = document.createElement('input');
@@ -35,32 +39,32 @@ function setLabel(text) {
 }
 
 if (checkInput('datetime-local')) {
-    // label
+    // LABEL
     setLabel('Pick the date and time you wish:');
-    // input datetime-local
+    // INPUT DATETIME-LOCAL
     const dateTimeLocal = document.createElement('input');
     dateTimeLocal.setAttribute('type', 'datetime-local');
     dateTimeLocal.setAttribute('id', 'datetime');
     cajaInput.appendChild(dateTimeLocal);
-    // button
+    // BUTTON
     setButton();
 } else if (checkInput('date') && checkInput('time')) {
-    // label
+    // LABEL
     setLabel('Date:');
     // input date
     const date = document.createElement('input');
     date.setAttribute('type', 'date');
     date.setAttribute('id', 'date');
     cajaInput.appendChild(date);
-    //
+    // LABEL
     setLabel('Time:');
-    // input time
+    // INPUT TIME
     const time = document.createElement('input');
     time.setAttribute('type', 'time');
     time.setAttribute('id', 'time');
     time.setAttribute('value', '00:00');
     cajaInput.appendChild(time);
-    // button
+    // BUTTON
     setButton();
 } else {
     alert('Sorry, your browser does not support this app');
@@ -97,11 +101,23 @@ function start() {
         error.style.display = "none";
         count.style.display = 'flex';
         // console.log(datetime);
-        setInterval(countdown, 1);
+        // SAVE INTO A VARIABLE TO BE ABLE TO STOP WITH CLEARINTERVAL LATER
+        interval = setInterval(countdown, refreshTime);
     }
 }
 
-// IT TRIGGERS 1000 TIMES PER SECOND FROM START BUTTON CLICKED
+// REFRESH TIME CONFIG
+
+refreshElement = document.getElementById('refresh');
+
+refreshElement.addEventListener('input', function () {
+    refreshTime = refreshElement.value;
+    // console.log(refreshTime);
+    clearInterval(interval);
+    start();
+}, false);
+
+// IT TRIGGERS WHEN START BUTTON IS CLICKED
 function countdown() {
     const endDate = new Date(datetime);
     // console.log(endDate);
