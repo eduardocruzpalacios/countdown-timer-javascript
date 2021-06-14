@@ -17,6 +17,14 @@ var interval;
 var refreshElement;
 var refreshTime = 1;
 
+const progressBarElement = document.getElementById('progressBar');
+const porcentajeElement = document.getElementById('porcentaje');
+var progressElement = document.getElementById('progress');
+var fechaInicial;
+var fechaFinal;
+var segundosTotales;
+var segundosActuales = 0;
+
 // CHECK INPUT IS SUPPORTED BY USER'S BROWSER AND CREATE CORRECT INPUT
 function checkInput(type) {
     const input = document.createElement('input');
@@ -51,7 +59,7 @@ if (checkInput('datetime-local')) {
 } else if (checkInput('date') && checkInput('time')) {
     // LABEL
     setLabel('Date:');
-    // input date
+    // INPUT DATE
     const date = document.createElement('input');
     date.setAttribute('type', 'date');
     date.setAttribute('id', 'date');
@@ -100,9 +108,17 @@ function start() {
     } else {
         error.style.display = "none";
         count.style.display = 'flex';
+        progressBarElement.style.display = 'block';
         // console.log(datetime);
         // SAVE INTO A VARIABLE TO BE ABLE TO STOP WITH CLEARINTERVAL LATER
         interval = setInterval(countdown, refreshTime);
+
+        // PROGRESS BAR
+        fechaFinal = new Date(datetime);
+        fechaInicial = new Date();
+        segundosTotales = (fechaFinal - fechaInicial);
+        // console.log(segundosTotales);
+        setInterval(progressBar, 100);
     }
 }
 
@@ -149,4 +165,16 @@ function countdown() {
 
 function formatTime(time) {
     return time < 10 ? `0${time}` : time;
+}
+
+// PROGRESS BAR
+function progressBar() {
+    // cada 100 milisegundos, variable aumenta 100 milisegundos
+    segundosActuales += 100;
+    // console.log("segundosActuales: " + segundosActuales);
+    // console.log("segundosTotales: " + segundosTotales);
+    var porcentaje = segundosActuales / segundosTotales * 100;
+    // console.log(porcentaje);
+    progressElement.style.width = porcentaje + "%";
+    porcentajeElement.innerHTML = porcentaje;
 }

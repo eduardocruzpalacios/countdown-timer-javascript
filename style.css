@@ -27,6 +27,8 @@ h1 {
     text-shadow: 5px 5px 5px #111;
 }
 
+/* TIME, DATE & TIMEDATE-LOCAL INPUT */
+
 #setup,
 #refreshconfig {
     display: grid;
@@ -60,12 +62,34 @@ h1 {
     border: 2px solid #ddd;
 }
 
+/* ERROR MESSAGE */
+
 #errormsg {
     font-size: 1.25rem;
     font-weight: bold;
     color: red;
     text-shadow: 0 0 5px #111;
 }
+
+/* PROGRESS BAR */
+
+#progressBar {
+    display: none;
+    width: 90%;
+}
+
+#bar {
+    width: 100%;
+    background-color: #ddd;
+}
+
+#progress {
+    width: 0%;
+    height: 40px;
+    background-color: royalblue;
+}
+
+/* TIME UNITS */
 
 .container {
     font-size: 1.25rem;
