@@ -143,24 +143,26 @@ function countdown() {
 
     var totalSeconds = (endDate - currentDate);
 
-    const milliseconds = Math.floor(totalSeconds) % 1000;
+    if (totalSeconds >= 0) {
+        const milliseconds = Math.floor(totalSeconds) % 1000;
 
-    totalSeconds /= 1000;
+        totalSeconds /= 1000;
 
-    const seconds = Math.floor(totalSeconds) % 60;
-    const mins = Math.floor(totalSeconds / 60) % 60;
-    const hours = Math.floor(totalSeconds / 3600) % 24;
-    const days = Math.floor(totalSeconds / 3600 / 24) % 365;
-    const years = Math.floor(totalSeconds / 3600 / 24 / 365) % 10;
-    const decades = Math.floor(totalSeconds / 3600 / 24 / 365 / 10);
+        const seconds = Math.floor(totalSeconds) % 60;
+        const mins = Math.floor(totalSeconds / 60) % 60;
+        const hours = Math.floor(totalSeconds / 3600) % 24;
+        const days = Math.floor(totalSeconds / 3600 / 24) % 365;
+        const years = Math.floor(totalSeconds / 3600 / 24 / 365) % 10;
+        const decades = Math.floor(totalSeconds / 3600 / 24 / 365 / 10);
 
-    millisecondsElement.innerHTML = milliseconds;
-    secondsElement.innerHTML = formatTime(seconds);
-    minutesElement.innerHTML = formatTime(mins);
-    hoursElement.innerHTML = formatTime(hours);
-    daysElement.innerHTML = days;
-    yearsElement.innerHTML = years;
-    decadesElement.innerHTML = decades;
+        millisecondsElement.innerHTML = milliseconds;
+        secondsElement.innerHTML = formatTime(seconds);
+        minutesElement.innerHTML = formatTime(mins);
+        hoursElement.innerHTML = formatTime(hours);
+        daysElement.innerHTML = days;
+        yearsElement.innerHTML = years;
+        decadesElement.innerHTML = decades;
+    }
 }
 
 function formatTime(time) {
@@ -175,6 +177,10 @@ function progressBar() {
     // console.log("segundosTotales: " + segundosTotales);
     var porcentaje = segundosActuales / segundosTotales * 100;
     // console.log(porcentaje);
-    progressElement.style.width = porcentaje + "%";
-    porcentajeElement.innerHTML = porcentaje;
+
+    if (porcentaje <= 100) {
+        progressElement.style.width = porcentaje + "%";
+        let n = porcentaje.toFixed(2);
+        porcentajeElement.innerHTML = n;
+    }
 }
