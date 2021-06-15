@@ -1,5 +1,5 @@
 // CONSTANTS & VARIABLES
-const cajaInput = document.getElementById('setup');
+const inputContainer = document.getElementById('setup');
 
 const decadesElement = document.getElementById("decades");
 const yearsElement = document.getElementById("years");
@@ -20,10 +20,10 @@ var refreshTime = 1;
 const progressBarElement = document.getElementById('progressBar');
 const porcentajeElement = document.getElementById('porcentaje');
 var progressElement = document.getElementById('progress');
-var fechaInicial;
-var fechaFinal;
-var segundosTotales;
-var segundosActuales = 0;
+var dateStart;
+var dateFinish;
+var secondsTotal;
+var secondsCurrent = 0;
 
 // CHECK INPUT IS SUPPORTED BY USER'S BROWSER AND CREATE CORRECT INPUT
 function checkInput(type) {
@@ -37,13 +37,13 @@ function setButton() {
     button.setAttribute('onclick', 'start()');
     button.setAttribute('id', 'start');
     button.innerHTML = 'Start';
-    cajaInput.appendChild(button);
+    inputContainer.appendChild(button);
 }
 
 function setLabel(text) {
     const label = document.createElement('label');
     label.innerHTML = text;
-    cajaInput.appendChild(label);
+    inputContainer.appendChild(label);
 }
 
 if (checkInput('datetime-local')) {
@@ -53,7 +53,7 @@ if (checkInput('datetime-local')) {
     const dateTimeLocal = document.createElement('input');
     dateTimeLocal.setAttribute('type', 'datetime-local');
     dateTimeLocal.setAttribute('id', 'datetime');
-    cajaInput.appendChild(dateTimeLocal);
+    inputContainer.appendChild(dateTimeLocal);
     // BUTTON
     setButton();
 } else if (checkInput('date') && checkInput('time')) {
@@ -63,7 +63,7 @@ if (checkInput('datetime-local')) {
     const date = document.createElement('input');
     date.setAttribute('type', 'date');
     date.setAttribute('id', 'date');
-    cajaInput.appendChild(date);
+    inputContainer.appendChild(date);
     // LABEL
     setLabel('Time:');
     // INPUT TIME
@@ -71,7 +71,7 @@ if (checkInput('datetime-local')) {
     time.setAttribute('type', 'time');
     time.setAttribute('id', 'time');
     time.setAttribute('value', '00:00');
-    cajaInput.appendChild(time);
+    inputContainer.appendChild(time);
     // BUTTON
     setButton();
 } else {
@@ -114,10 +114,10 @@ function start() {
         interval = setInterval(countdown, refreshTime);
 
         // PROGRESS BAR
-        fechaFinal = new Date(datetime);
-        fechaInicial = new Date();
-        segundosTotales = (fechaFinal - fechaInicial);
-        // console.log(segundosTotales);
+        dateFinish = new Date(datetime);
+        dateStart = new Date();
+        secondsTotal = (dateFinish - dateStart);
+        // console.log(secondsTotal);
         setInterval(progressBar, 100);
     }
 }
@@ -133,7 +133,7 @@ refreshElement.addEventListener('input', function () {
     start();
 }, false);
 
-// IT TRIGGERS WHEN START BUTTON IS CLICKED
+// COUNTDOWN
 function countdown() {
     const endDate = new Date(datetime);
     // console.log(endDate);
@@ -171,16 +171,16 @@ function formatTime(time) {
 
 // PROGRESS BAR
 function progressBar() {
-    // cada 100 milisegundos, variable aumenta 100 milisegundos
-    segundosActuales += 100;
-    // console.log("segundosActuales: " + segundosActuales);
-    // console.log("segundosTotales: " + segundosTotales);
-    var porcentaje = segundosActuales / segundosTotales * 100;
-    // console.log(porcentaje);
+    // EACH X MILLISECONDS, VAR += X MILLISECONDS
+    secondsCurrent += 100;
+    // console.log("secondsCurrent: " + secondsCurrent);
+    // console.log("secondsTotal: " + secondsTotal);
+    var percentage = secondsCurrent / secondsTotal * 100;
+    // console.log(percentage);
 
-    if (porcentaje <= 100) {
-        progressElement.style.width = porcentaje + "%";
-        let n = porcentaje.toFixed(2);
-        porcentajeElement.innerHTML = n;
+    if (percentage <= 100) {
+        progressElement.style.width = percentage + "%";
+        let decimals = percentage.toFixed(2);
+        porcentajeElement.innerHTML = decimals;
     }
 }
