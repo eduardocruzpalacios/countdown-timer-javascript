@@ -4,10 +4,19 @@
     padding: 0;
 }
 
+:root {
+    --negro1: #111;
+    --negro2: #222;
+    --blanco1: #eee;
+    --blanco2: #ddd;
+    --rojo: #FF0000;
+    --azul: #4169E1;
+}
+
 /* img: https://www.pexels.com/photo/black-sand-dunes-2387793/ */
 
 body {
-    color: #eee;
+    color: var(--blanco1);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -24,7 +33,7 @@ body {
 
 h1 {
     font-size: 2.5rem;
-    text-shadow: 5px 5px 5px #111;
+    text-shadow: 5px 5px 5px var(--negro1);
 }
 
 /* TIME, DATE & TIMEDATE-LOCAL INPUT */
@@ -48,18 +57,18 @@ h1 {
 #setup button {
     padding: .5rem;
     font-size: 1rem;
-    background-color: #ddd;
+    background-color: var(--blanco2);
     color: #222;
-    border: 2px solid #222;
+    border: 2px solid var(--negro2);
     transition: all .5s linear;
     grid-column: 1 / span 2;
 }
 
 #setup button:hover {
     cursor: pointer;
-    background-color: #222;
-    color: #ddd;
-    border: 2px solid #ddd;
+    background-color: var(--negro2);
+    color: var(--blanco2);
+    border: 2px solid var(--blanco2);
 }
 
 /* ERROR MESSAGE */
@@ -67,8 +76,8 @@ h1 {
 #errormsg {
     font-size: 1.25rem;
     font-weight: bold;
-    color: red;
-    text-shadow: 0 0 5px #111;
+    color: var(--rojo);
+    text-shadow: 0 0 5px var(--negro1);
 }
 
 /* PROGRESS BAR */
@@ -78,15 +87,24 @@ h1 {
     width: 90%;
 }
 
+#progressBar p {
+    text-align: center;
+    margin-bottom: .5rem;
+}
+
+#progressBar span {
+    color: var(--azul);
+}
+
 #bar {
     width: 100%;
-    background-color: #ddd;
+    background-color: var(--blanco2);
 }
 
 #progress {
     width: 0%;
     height: 40px;
-    background-color: royalblue;
+    background-color: var(--azul);
 }
 
 /* TIME UNITS */
@@ -103,7 +121,7 @@ h1 {
 
 .unit {
     text-align: center;
-    text-shadow: 0 0 5px #eee;
+    text-shadow: 0 0 5px var(--blanco1);
 }
 
 @media (max-width: 650px) {
@@ -115,7 +133,8 @@ h1 {
         font-size: 1.25rem;
     }
 
-    #setup {
+    #setup,
+    #refreshconfig {
         display: grid;
         grid-template-columns: auto;
         gap: 1rem;

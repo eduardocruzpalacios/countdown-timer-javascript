@@ -25,7 +25,7 @@ var refreshElement = document.getElementById('refresh');
 var refreshTime = 1;
 
 const progressBarElement = document.getElementById('progressBar');
-const porcentajeElement = document.getElementById('porcentaje');
+const percentageElement = document.getElementById('percentage');
 const progressElement = document.getElementById('progress');
 
 var secondsCurrent = 0;
@@ -178,17 +178,17 @@ function progressBar() {
 
     // EACH X MILLISECONDS, VAR += X MILLISECONDS
     secondsCurrent += 100;
-    console.log("secondsCurrent: " + secondsCurrent);
+    // console.log("secondsCurrent: " + secondsCurrent);
 
-    console.log(difference);
+    // console.log(difference);
 
     var percentage = secondsCurrent / difference * 100;
-    console.log(percentage);
+    // console.log(percentage);
 
     if (percentage <= 100) {
         progressElement.style.width = percentage + "%";
         let decimals = percentage.toFixed(2);
-        porcentajeElement.innerHTML = decimals;
+        percentageElement.innerHTML = decimals + " %";
     }
 }
 
