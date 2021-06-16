@@ -13,17 +13,22 @@ var datetime;
 const error = document.getElementById('errormsg');
 const count = document.getElementById('count');
 
+var difference;
+
+var endDate;
+var currentDate;
+var totalSeconds;
+
 var interval;
-var refreshElement;
+var interval2;
+var refreshElement = document.getElementById('refresh');
 var refreshTime = 1;
 
 const progressBarElement = document.getElementById('progressBar');
 const porcentajeElement = document.getElementById('porcentaje');
-var progressElement = document.getElementById('progress');
-var dateStart;
-var dateFinish;
-var secondsTotal;
-var secondsCurrent;
+const progressElement = document.getElementById('progress');
+
+var secondsCurrent = 0;
 
 // CHECK INPUT IS SUPPORTED BY USER'S BROWSER AND CREATE CORRECT INPUT
 function checkInput(type) {
@@ -96,11 +101,11 @@ function start() {
     // console.log(datetime);
 
     const end = new Date(datetime);
-    now = new Date();
-    const difference = (end - now);
+    const now = new Date();
+    difference = (end - now);
     // console.log(difference);
 
-    // VALIDATE SELECTED DATE BY USER (16 is the datetime format length)
+    // VALIDATE SELECTED DATE BY USER (16 IS THE DATETIME FORMAT LENGTH)
     if (datetime == '' || datetime == null || datetime.length < 16) {
         error.innerHTML = "set up a date!";
     } else if (difference <= 0) {
@@ -114,18 +119,14 @@ function start() {
         interval = setInterval(countdown, refreshTime);
 
         // PROGRESS BAR
-        dateFinish = new Date(datetime);
-        dateStart = new Date();
-        secondsTotal = (dateFinish - dateStart);
         // console.log(secondsTotal);
         secondsCurrent = 0;
-        setInterval(progressBar, 100);
+        clearInterval(interval2);
+        interval2 = setInterval(progressBar, 100);
     }
 }
 
 // REFRESH TIME CONFIG
-
-refreshElement = document.getElementById('refresh');
 
 refreshElement.addEventListener('input', function () {
     refreshTime = refreshElement.value;
@@ -136,13 +137,13 @@ refreshElement.addEventListener('input', function () {
 
 // COUNTDOWN
 function countdown() {
-    const endDate = new Date(datetime);
+    endDate = new Date(datetime);
     // console.log(endDate);
 
-    const currentDate = new Date();
+    currentDate = new Date();
     // console.log(currentDate);
 
-    var totalSeconds = (endDate - currentDate);
+    totalSeconds = (endDate - currentDate);
 
     if (totalSeconds >= 0) {
         const milliseconds = Math.floor(totalSeconds) % 1000;
@@ -164,8 +165,7 @@ function countdown() {
         yearsElement.innerHTML = years;
         decadesElement.innerHTML = decades;
     } else {
-        error.style.display = "block";
-        error.innerHTML = "the count has ended!";
+        countFinished();
     }
 }
 
@@ -175,16 +175,25 @@ function formatTime(time) {
 
 // PROGRESS BAR
 function progressBar() {
+
     // EACH X MILLISECONDS, VAR += X MILLISECONDS
     secondsCurrent += 100;
-    // console.log("secondsCurrent: " + secondsCurrent);
-    // console.log("secondsTotal: " + secondsTotal);
-    var percentage = secondsCurrent / secondsTotal * 100;
-    // console.log(percentage);
+    console.log("secondsCurrent: " + secondsCurrent);
+
+    console.log(difference);
+
+    var percentage = secondsCurrent / difference * 100;
+    console.log(percentage);
 
     if (percentage <= 100) {
         progressElement.style.width = percentage + "%";
         let decimals = percentage.toFixed(2);
         porcentajeElement.innerHTML = decimals;
     }
+}
+
+// COUNT FINISHED
+function countFinished() {
+    error.style.display = "block";
+    error.innerHTML = "the count has ended!";
 }
