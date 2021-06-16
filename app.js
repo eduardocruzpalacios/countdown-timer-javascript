@@ -191,7 +191,11 @@ function progressBar() {
 
         let decimals;
 
-        if (difference <= 600000) { // < 10 MINUTES
+        if (difference <= 10000) { // < 10 SECONDS
+            decimals = percentage.toFixed(0);
+        } else if (difference > 10000 && difference <= 60000) { // < 1 MINUTE
+            decimals = percentage.toFixed(1);
+        } else if (difference > 60000 && difference <= 600000) { // < 10 MINUTES
             decimals = percentage.toFixed(2);
         } else if (difference > 600000 && difference <= 3600000) { // < 1 HOUR
             decimals = percentage.toFixed(3);
