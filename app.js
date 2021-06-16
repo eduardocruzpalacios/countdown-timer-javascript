@@ -23,7 +23,7 @@ var progressElement = document.getElementById('progress');
 var dateStart;
 var dateFinish;
 var secondsTotal;
-var secondsCurrent = 0;
+var secondsCurrent;
 
 // CHECK INPUT IS SUPPORTED BY USER'S BROWSER AND CREATE CORRECT INPUT
 function checkInput(type) {
@@ -118,6 +118,7 @@ function start() {
         dateStart = new Date();
         secondsTotal = (dateFinish - dateStart);
         // console.log(secondsTotal);
+        secondsCurrent = 0;
         setInterval(progressBar, 100);
     }
 }
@@ -162,6 +163,9 @@ function countdown() {
         daysElement.innerHTML = days;
         yearsElement.innerHTML = years;
         decadesElement.innerHTML = decades;
+    } else {
+        error.style.display = "block";
+        error.innerHTML = "the count has ended!";
     }
 }
 
