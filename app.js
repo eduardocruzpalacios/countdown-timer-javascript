@@ -186,8 +186,27 @@ function progressBar() {
     // console.log(percentage);
 
     if (percentage <= 100) {
+
         progressElement.style.width = percentage + "%";
-        let decimals = percentage.toFixed(2);
+
+        let decimals;
+
+        if (difference <= 600000) { // < 10 MINUTES
+            decimals = percentage.toFixed(2);
+        } else if (difference > 600000 && difference <= 3600000) { // < 1 HOUR
+            decimals = percentage.toFixed(3);
+        } else if (difference > 3600000 && difference <= 86400000) { // > 1 HOUR
+            decimals = percentage.toFixed(4);
+        } else if (difference > 86400000 && difference <= 2592000000) { // > 1 DAY
+            decimals = percentage.toFixed(5);
+        } else if (difference > 2592000000 && difference <= 31104000000) { // > 30 DAYS
+            decimals = percentage.toFixed(6);
+        } else if (difference > 31104000000 && difference <= 311040000000) { // > 1 YEAR
+            decimals = percentage.toFixed(7);
+        } else { // > 10 YEARS
+            decimals = percentage.toFixed(8);
+        }
+
         percentageElement.innerHTML = decimals + " %";
     }
 }
