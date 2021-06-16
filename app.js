@@ -185,7 +185,7 @@ function progressBar() {
     var percentage = secondsCurrent / difference * 100;
     // console.log(percentage);
 
-    if (percentage <= 100) {
+    if (percentage <= 100 && secondsCurrent <= difference) {
 
         progressElement.style.width = percentage + "%";
 
