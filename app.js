@@ -111,6 +111,7 @@ function start() {
     } else if (difference <= 0) {
         error.innerHTML = "the end date must be later than now!";
     } else {
+        error.innerHTML = "";
         error.style.display = "none";
         count.style.display = 'flex';
         progressBarElement.style.display = 'block';
@@ -217,6 +218,8 @@ function progressBar() {
 
 // COUNT FINISHED
 function countFinished() {
+    clearInterval(interval);
+    clearInterval(interval2);
     error.style.display = "block";
     error.innerHTML = "the count has ended!";
 }
