@@ -111,7 +111,12 @@ function start() {
     if (datetime == '' || datetime == null || datetime.length < 16) {
         error.innerHTML = "set up a date!";
     } else if (difference <= 0) {
-        error.innerHTML = "the end date must be later than now!";
+        if (!running) {
+            error.innerHTML = "the end date must be later than now!";
+        } else {
+            // console.log('running: ' + running);
+            running = false;
+        }
     } else {
         running = true;
         error.innerHTML = "";
@@ -224,12 +229,15 @@ function countFinished() {
     clearInterval(interval);
     clearInterval(interval2);
     error.style.display = "block";
-    error.innerHTML = "the count has ended!";
-    if (running) {
-        error.innerHTML = "";
+    error.innerHTML = "";
+    if (!running) {
         error.innerHTML = "invalid date selected while running";
         progressBarElement.style.display = "none";
         count.style.display = "none";
+    } else {
+        error.innerHTML = "the count has ended!";
+        progressBarElement.style.display = "block";
+        count.style.display = "flex";
+        running = false;
     }
-    running = false;
 }
