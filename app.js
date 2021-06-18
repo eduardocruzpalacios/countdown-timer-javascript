@@ -30,6 +30,8 @@ const progressElement = document.getElementById('progress');
 
 var secondsCurrent = 0;
 
+var running = false;
+
 // CHECK INPUT IS SUPPORTED BY USER'S BROWSER AND CREATE CORRECT INPUT
 function checkInput(type) {
     const input = document.createElement('input');
@@ -111,6 +113,7 @@ function start() {
     } else if (difference <= 0) {
         error.innerHTML = "the end date must be later than now!";
     } else {
+        running = true;
         error.innerHTML = "";
         error.style.display = "none";
         count.style.display = 'flex';
@@ -222,4 +225,11 @@ function countFinished() {
     clearInterval(interval2);
     error.style.display = "block";
     error.innerHTML = "the count has ended!";
+    if (running) {
+        error.innerHTML = "";
+        error.innerHTML = "invalid date selected while running";
+        progressBarElement.style.display = "none";
+        count.style.display = "none";
+    }
+    running = false;
 }
