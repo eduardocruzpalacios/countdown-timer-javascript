@@ -9,28 +9,28 @@ const minutesElement = document.getElementById("minutes");
 const secondsElement = document.getElementById("seconds");
 const millisecondsElement = document.getElementById("milliseconds");
 
-var datetime;
+let datetime;
 const error = document.getElementById('errormsg');
 const count = document.getElementById('count');
 
-var difference;
+let difference;
 
-var endDate;
-var currentDate;
-var totalSeconds;
+let endDate;
+let currentDate;
+let totalSeconds;
 
-var interval;
-var interval2;
-var refreshElement = document.getElementById('refresh');
-var refreshTime = 1;
+let interval;
+let interval2;
+const refreshElement = document.getElementById('refresh');
+let refreshTime = 1;
 
 const progressBarElement = document.getElementById('progressBar');
 const percentageElement = document.getElementById('percentage');
 const progressElement = document.getElementById('progress');
 
-var secondsCurrent = 0;
+let secondsCurrent = 0;
 
-var running = false;
+let running = false;
 
 // CHECK INPUT IS SUPPORTED BY USER'S BROWSER AND CREATE CORRECT INPUT
 function checkInput(type) {
@@ -91,10 +91,10 @@ function start() {
     if (checkInput('datetime-local')) {
         datetime = document.getElementById('datetime').value;
     } else if (checkInput('date') && checkInput('time')) {
-        var date = document.getElementById('date').value;
+        let date = document.getElementById('date').value;
         // console.log(date);
 
-        var time = document.getElementById('time').value;
+        let time = document.getElementById('time').value;
         // console.log(time);
 
         datetime = date + 'T' + time;
@@ -185,13 +185,13 @@ function formatTime(time) {
 // PROGRESS BAR
 function progressBar() {
 
-    // EACH X MILLISECONDS, VAR += X MILLISECONDS
+    // EACH X MILLISECONDS, let += X MILLISECONDS
     secondsCurrent += 100;
     // console.log("secondsCurrent: " + secondsCurrent);
 
     // console.log(difference);
 
-    var percentage = secondsCurrent / difference * 100;
+    let percentage = secondsCurrent / difference * 100;
     // console.log(percentage);
 
     if (percentage <= 100 && secondsCurrent <= difference) {
