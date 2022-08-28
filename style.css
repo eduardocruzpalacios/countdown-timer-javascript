@@ -5,18 +5,18 @@
 }
 
 :root {
-    --negro1: #111;
-    --negro2: #222;
-    --blanco1: #eee;
-    --blanco2: #ddd;
-    --rojo: #FF0000;
-    --azul: #4169E1;
+    --black1: #111;
+    --black2: #222;
+    --white1: #eee;
+    --white2: #ddd;
+    --red: #FF0000;
+    --blue: #4169E1;
 }
 
 /* img: https://www.pexels.com/photo/black-sand-dunes-2387793/ */
 
 body {
-    color: var(--blanco1);
+    color: var(--white1);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -32,7 +32,7 @@ body {
 
 h1 {
     font-size: 2.5rem;
-    text-shadow: 5px 5px 5px var(--negro1);
+    text-shadow: 5px 5px 5px var(--black1);
 }
 
 /* TIME, DATE & TIMEDATE-LOCAL INPUT */
@@ -54,8 +54,8 @@ h1 {
 }
 
 #setup button {
-    background-color: var(--blanco2);
-    border: 2px solid var(--negro2);
+    background-color: var(--white2);
+    border: 2px solid var(--black2);
     color: #222;
     font-size: 1rem;
     grid-column: 1 / span 2;
@@ -64,19 +64,19 @@ h1 {
 }
 
 #setup button:hover {
-    background-color: var(--negro2);
-    border: 2px solid var(--blanco2);
-    color: var(--blanco2);
+    background-color: var(--black2);
+    border: 2px solid var(--white2);
+    color: var(--white2);
     cursor: pointer;
 }
 
 /* ERROR MESSAGE */
 
 #errormsg {
-    color: var(--rojo);
+    color: var(--red);
     font-size: 1.25rem;
     font-weight: bold;
-    text-shadow: 0 0 5px var(--negro1);
+    text-shadow: 0 0 5px var(--black1);
 }
 
 /* PROGRESS BAR */
@@ -92,16 +92,16 @@ h1 {
 }
 
 #progressBar span {
-    color: var(--azul);
+    color: var(--blue);
 }
 
 #bar {
-    background-color: var(--blanco2);
+    background-color: var(--white2);
     width: 100%;
 }
 
 #progress {
-    background-color: var(--azul);
+    background-color: var(--blue);
     height: 40px;
     width: 0%;
 }
@@ -119,7 +119,7 @@ h1 {
 
 .unit {
     text-align: center;
-    text-shadow: 0 0 5px var(--blanco1);
+    text-shadow: 0 0 5px var(--white1);
 }
 
 @media (max-width: 650px) {
