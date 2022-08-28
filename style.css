@@ -21,14 +21,13 @@ body {
 }
 
 #heroImage {
-    height: 100vh;
+    align-items: center;
     background: url(img.jpg) center;
     background-size: cover;
-
     display: flex;
     flex-direction: column;
+    height: 100vh;
     justify-content: space-evenly;
-    align-items: center;
 }
 
 h1 {
@@ -40,43 +39,43 @@ h1 {
 
 #setup,
 #refreshconfig {
+    align-items: center;
     display: grid;
+    gap: 2rem;
     grid-template-columns: auto auto;
     justify-content: center;
-    align-items: center;
-    gap: 2rem;
 }
 
 #setup input,
 #refreshconfig input {
-    padding: .5rem;
     font-size: 1rem;
     outline: none;
+    padding: .5rem;
 }
 
 #setup button {
-    padding: .5rem;
-    font-size: 1rem;
     background-color: var(--blanco2);
-    color: #222;
     border: 2px solid var(--negro2);
-    transition: all .5s linear;
+    color: #222;
+    font-size: 1rem;
     grid-column: 1 / span 2;
+    padding: .5rem;
+    transition: all .5s linear;
 }
 
 #setup button:hover {
-    cursor: pointer;
     background-color: var(--negro2);
-    color: var(--blanco2);
     border: 2px solid var(--blanco2);
+    color: var(--blanco2);
+    cursor: pointer;
 }
 
 /* ERROR MESSAGE */
 
 #errormsg {
+    color: var(--rojo);
     font-size: 1.25rem;
     font-weight: bold;
-    color: var(--rojo);
     text-shadow: 0 0 5px var(--negro1);
 }
 
@@ -88,8 +87,8 @@ h1 {
 }
 
 #progressBar p {
-    text-align: center;
     margin-bottom: .5rem;
+    text-align: center;
 }
 
 #progressBar span {
@@ -97,26 +96,25 @@ h1 {
 }
 
 #bar {
-    width: 100%;
     background-color: var(--blanco2);
+    width: 100%;
 }
 
 #progress {
-    width: 0%;
-    height: 40px;
     background-color: var(--azul);
+    height: 40px;
+    width: 0%;
 }
 
 /* TIME UNITS */
 
 .container {
-    font-size: 1.25rem;
-
     display: none;
     flex-direction: row;
-    justify-content: center;
-    gap: 1.25rem;
     flex-wrap: wrap;
+    font-size: 1.25rem;
+    gap: 1.25rem;
+    justify-content: center;
 }
 
 .unit {
@@ -136,8 +134,8 @@ h1 {
     #setup,
     #refreshconfig {
         display: grid;
-        grid-template-columns: auto;
         gap: 1rem;
+        grid-template-columns: auto;
     }
 
     #setup label {
